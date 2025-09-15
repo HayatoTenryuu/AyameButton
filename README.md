@@ -11,11 +11,11 @@ Ayame Button [http://nakiriayame.moe](https://nakiriayame.moe)
 
 ## 特别鸣谢/特別な感謝/Special Thanks(Bilibili/Twitter ID)
 
-音频剪辑/オーディオクリップ担当: 
+音频剪辑/オーディオクリップ担当: 幽世鬼神的居酒屋 
 
-翻译/翻訳担当：
+翻译/翻訳担当：幽世鬼神的居酒屋
 
-素材建议/リソース提案者：
+项目开发者/開発者：寒いもみじ雪 & Cololi
 
 This project is supported by Voice Button United Studio.
 
@@ -25,5 +25,13 @@ This project is modified based on the [Aqua button](https://github.com/zyzsdy/aq
 
 ## LICENCE
 
-程序部分： MIT
+> 注：若以下内容存在与GPL协议内容冲突或GPL协议内容未提及的，请按以下内容为准。
 
+程序部分： GPL
+
+Code: GPL
+
+若引用我们的项目而不修改任何内容，则引用方需在描述和README.md的任意部位提及使用我们的项目。
+
+若修改我们项目源代码再发布，或参考我们项目内部实现发布另一个新项目，则发布方必须在该新（或修改后）项目的发布文章的首部 和 任何涉及我们项目相关内容的位置 明确声明来源于本仓库。
+不得扭曲或隐藏免费且开源的事实。

@@ -13,11 +13,11 @@
                 </div>
                 
                 <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-                    <ul class="nav navbar-nav" style="margin-bottom:0px;">
+                    <!-- <ul class="nav navbar-nav" style="margin-bottom:0px;">
                         <li><a href="https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg?sub_confirmation=1" target="_blank" style="margin-top:2px"><img src="resources/youtube_social_icon_red.png" height="20"/></a></li>
                         <li><a href="https://twitter.com/nakiriayame" target="_blank"><img src="resources/Twitter_Social_Icon_Circle_Color.png" height="27"/></a></li>
                         <li><a href="https://space.bilibili.com/389858027" target="_blank"><img src="resources/bilibili.png" height="27"/></a></li>
-                    </ul>
+                    </ul> -->
                     <ul class="nav navbar-nav navbar-right" style="margin-top:0px;margin-bottom:0px">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="resources/download.svg" height="23"/></a>
@@ -33,6 +33,7 @@
                             <ul class="dropdown-menu">
                                 <li style="width: 63px;"><a href="javascript:;" style="text-align: center;padding: 5px 0px;width: 63px;" @click="chlang('zh-CN')"><img src="resources/China.jpg" width="25"></a></li>
                                 <li style="width: 63px;"><a href="javascript:;" style="text-align: center;padding: 5px 0px;width: 63px;margin-bottom: 4px;" @click="chlang('ja-JP')"><img src="resources/Japan.png" width="25"></a></li>
+                                <li style="width: 63px;"><a href="javascript:;" style="text-align: center;padding: 5px 0px;width: 63px;margin-bottom: 4px;" @click="chlang('en-US')"><img src="resources/England.jpg" width="25"></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -44,12 +45,14 @@
         </div>
         <footer class="footer">
             <div class="container-fluid footer-content">
-                <button class="btn-buttom btn-buttom-info"><a href="javascript:location.reload();" style="color: #eeeeee;text-decoration: none">犬 1.0.2 BETA</a></button>
+                <button class="btn-buttom btn-buttom-info">
+                    <a href="javascript:location.reload();" style="color: #eeeeee;text-decoration: none">犬 1.0.0</a>
+                </button>
                 <div class="pull-left">
                     <div class="text-left" style="color: #fd325a;">{{$t("info.author")}}</div>
                     <div class="text-left">{{$t("info.notOfficial")}}</div>
-                    <div class="text-left"><a href="https://voicebuttonunitedproject.github.io/AyameButton/" target="_blank">{{$t("info.audioStaff")}}</a></div>
-                    <div class="text-left"><a href="https://github.com/VoiceButtonUnitedProject/AyameButton" target="_blank">{{$t("info.toGithub")}}</a></div>
+                    <div class="text-left"><a href="https://github.com/vbup-osc/ayame-button" target="_blank">{{$t("info.audioStaff")}}</a></div>
+                    <div class="text-left"><a href="https://github.com/vbup-osc/ayame-button/issues" target="_blank">{{$t("info.toGithub")}}</a></div>
                 </div>
             </div>
         </footer>
@@ -86,7 +89,7 @@
 }
 .navbar{ 
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.151);
-    background-color: rgba(0, 0, 0, 0.151);/*顶栏部分*/
+    background-color: #ffd0d09f;/*顶栏部分*/
     margin: 15px;
 }
 .navbar-fixed-top{ 
@@ -106,7 +109,7 @@
     border-top: 0px solid transparent;/*右侧二级菜单顶部边框*/
 }
 .navbar-default .navbar-toggle .icon-bar{ 
-    background: #777777;/*右侧按钮颜色*/
+    background: #ff8c8c;/*右侧按钮颜色*/
 }
 .dropdown-menu{
     width: 63px;
@@ -174,7 +177,7 @@
 .footer-content {
     padding-top: 10px;
     padding-bottom: 10px;
-    color: #7a7a7a;
+    color: #8f8383;
     font-weight:600;
 }
 .text-right{

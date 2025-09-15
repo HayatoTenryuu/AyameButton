@@ -14,16 +14,16 @@
             </div>
             <div class="title">{{$t("info.title")}}<img src="/resources/bg.png" style="width:40px;height:auto;margin-left:5px;margin-bottom: 7px;"></div>
                 <div class="cate-ctrldft">{{$t("action.live")}}
-                    <div v-for="(item) in youtubeData.vtubers" :key="item.ytChannelId"><button class="btn btn-ctrldft" v-if="item.ytChannelId === 'UC7fk0CB07ly8oSl0aqKkqFg'">{{$t('info.subscriber')}}{{item.subscriberCount}}</button></div>
-                    <div v-for="live in live_data" :key="live.startTime">
+                    <div v-for="(item) in youtubeData.channels" :key="item.yt_channel_id"><button class="btn btn-ctrldft" v-if="item.yt_channel_id === 'UC7fk0CB07ly8oSl0aqKkqFg'">{{$t('info.subscriber')}}{{item.subscriber_count}}</button></div>
+                    <div v-for="live in live_data" :key="live.live_schedule">
                         <div v-if="live.title.length">
-                            <span v-if="live.type === 'upcoming'" style="font-size:17px;">{{$t("action.plan")}}{{ format_time(live.startTime) }}</span>
-                            <span v-if="live.type === 'live'" class="warning--text" style="font-size:17px;">{{$t("action.ing")}}</span>
+                            <span v-if="live.status === 'upcoming'" style="font-size:17px;">{{$t("action.plan")}}{{new Date(live.live_schedule).toLocaleString()}}</span>
+                            <span v-if="live.status === 'live'" class="warning--text" style="font-size:17px;">{{$t("action.ing")}}</span>
                             <button class="btn btn-ctrldft"><a 
-                                :href="'https://www.youtube.com/watch?v=' + live.id"
+                                :href="'https://www.youtube.com/watch?v=' + live.yt_video_key"
                                 target="_blank"
                                 style="text-decoration: none;color: #ffffff;"
-                                :class="live.type === 'live' ? 'error--text' : ''"
+                                :class="live.status === 'live' ? 'error--text' : ''"
                             >
                               {{live.title}}
                             </a></button>
@@ -154,11 +154,11 @@
     box-shadow: 0 6px 6px 0px rgba(0, 0, 0, 0.1);
 }
 .btn-body-status{/*播放状态分类标题*/
-    background-color: #585858d8;
+    background-color: #ff9b9bd8;
     border-radius: 150px;
     color: #fff;
     text-align: center;
-    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.11);
     position: fixed;
     top: 10px;
     font-size: 14px;
@@ -260,38 +260,32 @@ class HomePage extends Vue {
         this.youtube()
     }
     youtube() {
-        axios.get('https://api.jetri.co/vtubers')
+        axios.get('https://api.holotools.app/v1/channels?limit=50')
         .then(response => {
         this.youtubeData = response.data
         })
     }
     mounted() {
-        axios.get('https://api.jetri.co/live/1.1')
+        axios.get('https://api.holotools.app/v1/live')
         .then(response => { 
             let fetched = response.data;
             let mio_lives = [];
             const channel_id = 'UC7fk0CB07ly8oSl0aqKkqFg';
             fetched.live.forEach(function(item){
-                if (item.channel === channel_id){
-                    item.type = 'live';
+                if (item.channel.yt_channel_id === channel_id){
+                    item.status = 'live';
                     mio_lives.push(item);
                 }
             });
             fetched.upcoming.forEach(function(item){
-                if (item.channel === channel_id){
-                    item.type = 'upcoming';
+                if (item.channel.yt_channel_id === channel_id){
+                    item.status = 'upcoming';
                     mio_lives.push(item);
                 }
             });
             this.live_data = mio_lives;
             this.live_data_loading = false;
         })
-    }
-    format_time(){
-        var ts = arguments[0] || 0;
-        var t,y,m,d,h,i,s;
-        t = ts ? new Date(ts*1000) : new Date();y = t.getFullYear();m = t.getMonth()+1;d = t.getDate();h = t.getHours();i = t.getMinutes();s = t.getSeconds();
-        return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i)+':'+(s<10?'0'+s:s);
     }
     play(item){
         if (this.overlapCheck) {
@@ -328,6 +322,8 @@ class HomePage extends Vue {
         var res=document.getElementById('share').value;
         if(this.$i18n.locale === 'ja-JP'){
             window.open("https://twitter.com/intent/tweet?text="+"%23あやめボタン %23百鬼絵巻 今日、「"+res+"」のランダムオーディオは「"+title+"」です！ より多くのオーディオを聞くには、「あやめボタン」のWebサイトにアクセスしてください~ https://nakiriayame.moe");
+        } else if (this.$i18n.locale === 'en-US'){
+            window.open("https://twitter.com/intent/tweet?text="+"%23あやめボタン %23百鬼絵巻 Today，"+res+"'s random audio is %22"+title+"%22！ Visit Ayame Button Website For More Audio! https://nakiriayame.moe");
         } else {
             window.open("https://twitter.com/intent/tweet?text="+"%23あやめボタン %23百鬼絵巻 今天，“"+res+"”的随机音频是“"+title+"”！ 访问余按钮网站聆听更多音频 https://nakiriayame.moe");
         }
